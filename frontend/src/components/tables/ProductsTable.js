@@ -8,15 +8,15 @@ import {
 } from '@chakra-ui/table';
 import React, { useState, useEffect } from 'react';
 import { Text } from '@chakra-ui/react'
-// import api from '../api/api';
+import api from '../../api/api';
 
 const ProductsTable = () => {
   const [products, setProducts] = useState([]);
   const [updateCards, setUpdateCards] = useState(true);
 
   const getProducts = async () => {
-    // const { data } = await api.get('/product');
-    // setProducts(data);
+    const { data } = await api.get('/product');
+    setProducts(data);
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const ProductsTable = () => {
           {products?.map(product => (
             <Tr>
               <Td>{product.name}</Td>
-              <Td>{product.type.name}</Td>
+              <Td>{product.productType.name}</Td>
               <Td>{product.supplier.name}</Td>
               <Td isNumeric>{product.quantity}</Td>
               <Td>{product.salePrice}</Td>

@@ -26,7 +26,7 @@ public class SupplierController {
         return new ResponseEntity<>(supplier1, HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Supplier>> index(){
         List<Supplier> suppliers = supplierService.findAll();
         return new ResponseEntity<>(suppliers, HttpStatus.OK);

@@ -21,10 +21,8 @@ public class Product {
     private BigDecimal salePrice;
 
     @ManyToOne
-    @JoinColumn(name= "supplier_id", nullable = false)
     private Supplier supplier;
 
     @ManyToOne
-    @JoinColumn(name= "type_id", nullable = false)
     private ProductType productType;
 }

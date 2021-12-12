@@ -26,7 +26,7 @@ public class ProductTypeController {
         return new ResponseEntity<>(productType1, HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ProductType>> index(){
         List<ProductType> productsTypes = productTypeService.findAll();
         return new ResponseEntity<>(productsTypes, HttpStatus.OK);

@@ -3,7 +3,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import HomePage from './pages/HomePage.js';
+import HomePage from './pages/HomePage';
+import Suppliers from './pages/Suppliers';
+import ProductType from './pages/ProductType';
 
 function AppRoutes() {
   return (
@@ -11,6 +13,8 @@ function AppRoutes() {
       <Routes>
         <Route exact path="/" element={<HomePage/>} />
         <Route path="/home-page" element={<HomePage/>} />
+        <Route path="/fornecedores" element={<Suppliers/>} />
+        <Route path="/tipos" element={<ProductType/>} />
         <Route element={<HomePage/>} />
       </Routes>
     </Router>

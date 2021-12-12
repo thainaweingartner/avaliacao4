@@ -33,7 +33,7 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Product>> index(){
         List<Product> people = productService.findAll();
         return new ResponseEntity<>(people, HttpStatus.OK);
