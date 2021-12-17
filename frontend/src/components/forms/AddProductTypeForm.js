@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Input, 
   Modal, 
@@ -31,13 +31,16 @@ const AddProductTypeForm = ( props ) => {
     try {
       await api.post('/type', values);
       handleFormClose();
-      setValues({
-        name: '',
-      })
     } catch (error) {
       alert(error.response.data.message);
     }
   }
+
+  useEffect(() => {
+    setValues({
+      name: '',
+    });
+  }, []);
   
   return (
     <Modal isOpen={openForm} onClose={handleFormClose}>
@@ -51,7 +54,7 @@ const AddProductTypeForm = ( props ) => {
                 <Input
                   style={{ marginBottom: '15px'}}
                   name="name"
-                  data-testid="name"
+                  data-testid="product-type-name"
                   onChange={updateValue}
                   required
                   value={values.name}
