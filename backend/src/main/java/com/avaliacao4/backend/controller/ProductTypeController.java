@@ -1,5 +1,6 @@
 package com.avaliacao4.backend.controller;
 
+import com.avaliacao4.backend.entities.Product;
 import com.avaliacao4.backend.entities.ProductType;
 import com.avaliacao4.backend.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,17 @@ public class ProductTypeController {
     public ResponseEntity<List<ProductType>> index(){
         List<ProductType> productsTypes = productTypeService.findAll();
         return new ResponseEntity<>(productsTypes, HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{productTypeId}")
+    public ResponseEntity<ProductType> updateProductType(@PathVariable Long productTypeId, @RequestBody ProductType productType){
+        ProductType productTypeUpdated = productTypeService.update(productTypeId, productType);
+        return new ResponseEntity<>(productTypeUpdated, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{productTypeId}")
+    public ResponseEntity deleteProductType(@PathVariable Long productTypeId)  {
+        productTypeService.delete(productTypeId);
+        return ResponseEntity.noContent().build();
     }
 }

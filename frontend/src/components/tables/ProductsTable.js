@@ -52,7 +52,7 @@ const ProductsTable = (props, ref) => {
   }
 
   return (
-    <div style={{maxWidth: '800px', alignSelf: "center", margin: '30px 0'}}>
+    <div style={{width: '80%', alignSelf: "center", margin: '30px 0'}}>
       <Table variant='striped' colorScheme='teal'>
         <Thead>
           <Tr>

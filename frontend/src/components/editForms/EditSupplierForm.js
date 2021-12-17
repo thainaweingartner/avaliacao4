@@ -31,7 +31,7 @@ const EditSupplierForm = ( props ) => {
   const submitForm = async (event) => {
     event.preventDefault();
     try {
-      await api.put(`/supplier/${supplier.id}`, values);
+      await api.put(`/supplier/update/${supplier.id}`, values);
       handleFormClose();
     } catch (error) {
       alert(error.response.data.message);

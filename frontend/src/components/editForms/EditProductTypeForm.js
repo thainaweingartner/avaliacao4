@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Input, 
   Modal, 
@@ -14,10 +14,12 @@ import { Text } from '@chakra-ui/react'
 import api from '../../api/api';
 
 const EditProductTypeForm = ( props ) => {
-  const { openForm, handleFormClose } = props;
-  const [values, setValues] = useState({
-    name: '',
-  });
+  const { productType, open, handleFormClose } = props;
+  const [values, setValues] = useState(productType);
+
+  useEffect(() => {
+    setValues(productType);
+  }, [open]);
 
   const updateValue = (event) => {
     setValues({
@@ -29,7 +31,7 @@ const EditProductTypeForm = ( props ) => {
   const submitForm = async (event) => {
     event.preventDefault();
     try {
-      await api.post('/type', values);
+      await api.put(`/type/update/${productType.id}`, values);
       handleFormClose();
       setValues({
         name: '',
@@ -40,7 +42,7 @@ const EditProductTypeForm = ( props ) => {
   }
   
   return (
-    <Modal isOpen={openForm} onClose={handleFormClose}>
+    <Modal isOpen={open} onClose={handleFormClose}>
         <ModalOverlay />
         <ModalContent>
           <form onSubmit={submitForm} data-testid="form">

@@ -74,6 +74,7 @@ const AddProductForm = ( props ) => {
       productType: allTypes.data[0],
       supplier: allSupliers.data[0],
     });
+    console.log(allTypes.data[0], allSupliers.data[0])
   }
 
   useEffect(() => {
