@@ -14,8 +14,12 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product save(Product product) {
-        return productRepository.save(product);
+    public Product save(Product product) throws Exception {
+        if (product.getQuantity() < 0) {
+            throw new Exception("A quantidade em estoque não pode ser menor que 0");
+        } else {
+            return productRepository.save(product);
+        }
     }
 
     public Product findById(Long productId){

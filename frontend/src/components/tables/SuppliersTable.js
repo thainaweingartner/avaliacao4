@@ -13,7 +13,7 @@ import api from '../../api/api';
 const ProductTypeTable = () => {
   const [suppliers, setSuppliers] = useState([]);
   const [updateCards, setUpdateCards] = useState(true);
-
+  
   const getSuppliers = async () => {
     const { data } = await api.get('/supplier');
     setSuppliers(data);

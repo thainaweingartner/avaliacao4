@@ -78,7 +78,6 @@ const AddProductForm = ( props ) => {
         name: event.target.value[1],
       }
     });
-    return null;
   };
 
   const changeProductType = (event) => {
@@ -89,7 +88,6 @@ const AddProductForm = ( props ) => {
         name: event.target.value[1],
       },
     });
-    return null;
   };
 
   
