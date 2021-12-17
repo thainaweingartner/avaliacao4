@@ -47,8 +47,14 @@ const AddProductForm = ( props ) => {
       handleFormClose();
       setValues({
         name: '',
-        productType: 0,
-        supplier: 0,
+        productType: {
+          id: '0',
+          name: ''
+        },
+        supplier: {
+          id: '0',
+          name: ''
+        },
         quantity: 0,
         salePrice: 0,
         purchasePrice: 0,
@@ -63,6 +69,11 @@ const AddProductForm = ( props ) => {
     const allTypes = await api.get('/type');
     setSuppliers(allSupliers.data);
     setTypes(allTypes.data);
+    setValues({
+      ...values,
+      productType: allTypes.data[0],
+      supplier: allSupliers.data[0],
+    });
   }
 
   useEffect(() => {

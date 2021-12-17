@@ -40,7 +40,7 @@ const AddProductTypeForm = ( props ) => {
     setValues({
       name: '',
     });
-  }, []);
+  }, [openForm]);
   
   return (
     <Modal isOpen={openForm} onClose={handleFormClose}>

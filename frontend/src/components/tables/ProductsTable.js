@@ -6,18 +6,23 @@ import {
   Tr,
   Td,
 } from '@chakra-ui/table';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Text } from '@chakra-ui/react'
 import api from '../../api/api';
 import { MdEdit, MdDelete } from 'react-icons/md';
 import EditProductForm from '../editForms/EditProductForm';
 
-const ProductsTable = () => {
+const ProductsTable = (props, ref) => {
   const [products, setProducts] = useState([]);
   const [openEditForm, setOpenEditForm] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
   const [updateTable, setUpdateTable] = useState(false);
 
+  useImperativeHandle(ref, () => ({
+    setUpdateTable,
+    updateTable,
+  }));
+  
   const getProducts = async () => {
     const { data } = await api.get('/product');
     setProducts(data);
@@ -84,4 +89,4 @@ const ProductsTable = () => {
   )
 }
 
-export default ProductsTable;
+export default forwardRef(ProductsTable);

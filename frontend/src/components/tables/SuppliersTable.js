@@ -6,14 +6,20 @@ import {
   Tr,
   Td,
 } from '@chakra-ui/table';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useImperativeHandle } from 'react';
 import { Text } from '@chakra-ui/react'
 import api from '../../api/api';
+import { forwardRef } from 'react/cjs/react.development';
 
-const ProductTypeTable = () => {
+const ProductTypeTable = (props, ref) => {
   const [suppliers, setSuppliers] = useState([]);
-  const [updateCards, setUpdateCards] = useState(true);
-  
+  const [updateTable, setUpdateTable] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    setUpdateTable,
+    updateTable,
+  }));
+
   const getSuppliers = async () => {
     const { data } = await api.get('/supplier');
     setSuppliers(data);
@@ -21,7 +27,7 @@ const ProductTypeTable = () => {
 
   useEffect(() => {
     getSuppliers();
-  }, [updateCards]);
+  }, [updateTable]);
 
   return (
     <div style={{maxWidth: '800px', alignSelf: "center", margin: '30px 0'}}>
@@ -50,4 +56,4 @@ const ProductTypeTable = () => {
   )
 }
 
-export default ProductTypeTable;
+export default forwardRef(ProductTypeTable);

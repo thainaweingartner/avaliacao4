@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import AddProductForm from '../components/forms/AddProductForm';
 import ProductsTable from '../components/tables/ProductsTable';
 import { 
@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 
 const HomePage = () => {
   const [formOpened, setFormOpened] = useState(false);
-  const [updateCards, setUpdateCards] = useState(true);
+  const tableRef = useRef();
 
   const formOpen = () => {
     setFormOpened(true);
@@ -17,7 +17,7 @@ const HomePage = () => {
 
   const formClose = () => {
     setFormOpened(false);
-    setUpdateCards(!updateCards);
+    tableRef.current?.setUpdateTable(!tableRef.current?.updateTable);
   }
 
   return (
@@ -28,7 +28,7 @@ const HomePage = () => {
         <NavLink to="/tipos">Tipos de Produtos</NavLink>
       </div>
       <Button style={{ alignSelf: "flex-end"}} name="add-button" variant='outline' onClick={formOpen}>Adicionar Produto</Button>
-      <ProductsTable />
+      <ProductsTable ref={tableRef}/>
       <AddProductForm openForm={formOpened} handleFormClose={formClose} />
       <Text fontSize="sm" align="center" style={{ margin: 'auto 0 0 0'}}>Developed by Thainá Weingartner Chagas in 2021</Text>
     </div>
