@@ -1,4 +1,4 @@
-## 04ª Avaliação do 4º Período do curso de Análise e Desenvolvimento de Sistemas da UniAmérica
+## 04ª Avaliação do 4º Período do curso de ADS da UniAmérica
 
 A prova consiste no desenvolvimento de um sistema para gerenciar estoques de produtos, e está divida em três projetos, sendo eles:
  - Backend;
