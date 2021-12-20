@@ -1,6 +1,7 @@
 package com.avaliacao4.backend.service;
 
 import com.avaliacao4.backend.entities.Product;
+import com.avaliacao4.backend.exceptions.QuantityException;
 import com.avaliacao4.backend.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product save(Product product) throws Exception {
+    public Product save(Product product) {
         if (product.getQuantity() < 0) {
-            throw new Exception("A quantidade em estoque não pode ser menor que 0");
+            throw new QuantityException("A quantidade em estoque não pode ser menor que 0");
         } else {
             return productRepository.save(product);
         }
@@ -33,9 +34,9 @@ public class ProductService {
         return product;
     }
 
-    public Product update(Long productId, Product product) throws Exception {
+    public Product update(Long productId, Product product) {
         if (product.getQuantity() < 0) {
-            throw new Exception("A quantidade em estoque não pode ser menor que 0");
+            throw new QuantityException("A quantidade em estoque não pode ser menor que 0");
         } else {
             Product productFound = productRepository.findById(productId)
                     .orElseThrow(() -> new RuntimeException("Product not found"));

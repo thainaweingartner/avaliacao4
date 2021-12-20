@@ -21,7 +21,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> save(@RequestBody Product product) throws Exception {
+    public ResponseEntity<Product> save(@RequestBody Product product) {
         Product product1 = productService.save(product);
         return new ResponseEntity<>(product1, HttpStatus.CREATED);
     }
@@ -39,7 +39,7 @@ public class ProductController {
     }
 
     @PutMapping("/update/{productId}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product) throws Exception {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product) {
         Product productUpdated = productService.update(productId, product);
         return new ResponseEntity<>(productUpdated, HttpStatus.OK);
     }

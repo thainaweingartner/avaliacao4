@@ -30,7 +30,7 @@ public class ServicesTests {
 
     @DisplayName("must create a product")
     @Test
-    void create() throws Exception {
+    void create() {
         Product newProduct = ProductFactory.buildDefault();
 
         when(productRepository.save(newProduct)).thenReturn(product);
