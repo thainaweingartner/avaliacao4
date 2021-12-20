@@ -33,19 +33,23 @@ public class ProductService {
         return product;
     }
 
-    public Product update(Long productId, Product product){
-        Product productFound =  productRepository.findById(productId)
-                .orElseThrow(()-> new RuntimeException("Product not found"));
+    public Product update(Long productId, Product product) throws Exception {
+        if (product.getQuantity() < 0) {
+            throw new Exception("A quantidade em estoque não pode ser menor que 0");
+        } else {
+            Product productFound = productRepository.findById(productId)
+                    .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        productFound.setName(product.getName());
-        productFound.setProductType(product.getProductType());
-        productFound.setPurchasePrice(product.getPurchasePrice());
-        productFound.setProductType(product.getProductType());
-        productFound.setQuantity(product.getQuantity());
-        productFound.setSalePrice(product.getSalePrice());
-        productFound.setSupplier(product.getSupplier());
-        productRepository.save(productFound);
-        return productFound;
+            productFound.setName(product.getName());
+            productFound.setProductType(product.getProductType());
+            productFound.setPurchasePrice(product.getPurchasePrice());
+            productFound.setProductType(product.getProductType());
+            productFound.setQuantity(product.getQuantity());
+            productFound.setSalePrice(product.getSalePrice());
+            productFound.setSupplier(product.getSupplier());
+            productRepository.save(productFound);
+            return productFound;
+        }
     }
 
     public void delete(Long productId){

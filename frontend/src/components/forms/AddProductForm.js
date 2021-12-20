@@ -60,7 +60,7 @@ const AddProductForm = ( props ) => {
         purchasePrice: 0,
       })
     } catch (error) {
-      alert(error.response.data.message);
+      alert('A quantidade de produtos não pode ser menor do que 0');
     }
   }
 
