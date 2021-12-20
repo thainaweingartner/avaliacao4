@@ -1,6 +1,7 @@
 package com.avaliacao4.backend.controller;
 
 import com.avaliacao4.backend.entities.Product;
+import com.avaliacao4.backend.entities.ProductQuantity;
 import com.avaliacao4.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,12 @@ public class ProductController {
     @PutMapping("/update/{productId}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product) {
         Product productUpdated = productService.update(productId, product);
+        return new ResponseEntity<>(productUpdated, HttpStatus.OK);
+    }
+
+    @PutMapping("/update-quantity/{productId}")
+    public ResponseEntity<Product> updateProductQuantity(@PathVariable Long productId, @RequestBody ProductQuantity productQuantity) {
+        Product productUpdated = productService.updateQuantity(productId, productQuantity);
         return new ResponseEntity<>(productUpdated, HttpStatus.OK);
     }
 

@@ -1,6 +1,7 @@
 package com.avaliacao4.backend.service;
 
 import com.avaliacao4.backend.entities.Product;
+import com.avaliacao4.backend.entities.ProductQuantity;
 import com.avaliacao4.backend.exceptions.QuantityException;
 import com.avaliacao4.backend.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -51,6 +52,28 @@ public class ProductService {
             productRepository.save(productFound);
             return productFound;
         }
+    }
+
+    public Product updateQuantity(Long productId, ProductQuantity productQuantity) {
+        Product productFound = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        Integer finalQuantity;
+
+        if(productQuantity.getCalculationType().equals(1)){
+            finalQuantity = productFound.getQuantity() + productQuantity.getQuantity();
+            System.out.println(finalQuantity);
+        } else {
+            finalQuantity = productFound.getQuantity() - productQuantity.getQuantity();
+            System.out.println(finalQuantity);
+            if (finalQuantity < 0) {
+                throw new QuantityException("A quantidade em estoque não pode ser menor que 0");
+            }
+        }
+        productFound.setQuantity(finalQuantity);
+        System.out.println(productFound);
+        productRepository.save(productFound);
+        return productFound;
     }
 
     public void delete(Long productId){

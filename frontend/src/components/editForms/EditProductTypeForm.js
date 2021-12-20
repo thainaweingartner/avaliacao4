@@ -37,7 +37,7 @@ const EditProductTypeForm = ( props ) => {
         name: '',
       })
     } catch (error) {
-      alert('A quantidade de produtos não pode ser menor do que 0');
+      alert(error.response.data.message);
     }
   }
   
